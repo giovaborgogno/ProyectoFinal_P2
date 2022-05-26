@@ -1,5 +1,4 @@
 #include <iostream>
-
 using namespace std;
 
 class EMPLEADO{
@@ -8,7 +7,7 @@ class EMPLEADO{
         int Nro;
         float Salario;
     public:
-        Empleados();
+        EMPLEADO();
         string getNombre();
         string getApellido();
         int getNro();
