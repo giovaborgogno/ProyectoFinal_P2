@@ -1,8 +1,14 @@
 #include <iostream>
+#include "validacion.cpp"
 using namespace std;
 
 int main(){
+  VALIDACION V;
+  string val;
 
-
-    return 0;
+  while(true){
+    cout << "Ingrese su DNI: "; getline(cin, val);
+    cout << V.CharOnly(val) << endl;
+  }
+  return 0;
 }
