@@ -2,9 +2,9 @@
 #include "clientes.cpp"
 using namespace std;
 
-class ADMINISTRATIVO : protected CLIENTE
+class ADMINISTRATIVO : public CLIENTE
 {
-protected:
+private:
     string Puesto;
 
 public:
