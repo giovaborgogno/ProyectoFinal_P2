@@ -3,6 +3,13 @@
 
 using namespace std;
 
+/* CLIENTE::CLIENTE(string Nombre, string Apellido, int Dni, string Email){
+  this->Nombre=Nombre;
+  this->Apellido=Apellido;
+  this->Dni=Dni;
+  this->Email=Email;
+} */
+
 string CLIENTE::getNombre(){
   return Nombre;
 }
