@@ -20,7 +20,12 @@ void CUENTASUELDO::setSaldo(float Saldo){
 }
 
 void CUENTASUELDO::Extraccion(float Monto){
-  Saldo-=Monto;
+  if(Saldo>=Monto){
+    Saldo-=Monto;
+  }
+  else{
+    cout << "La cantidad a extraer supera el saldo." << endl;
+  }
 }
 
 void CUENTASUELDO::Deposito(float Monto){

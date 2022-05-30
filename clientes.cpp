@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 string CLIENTE::getNombre(){
   return Nombre;
 }

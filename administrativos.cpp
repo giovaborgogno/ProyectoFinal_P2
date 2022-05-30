@@ -7,7 +7,7 @@ ADMINISTRATIVO::ADMINISTRATIVO(string Nombre, string Apellido, int Dni, string E
     this->Nombre = Nombre;
     this->Apellido = Apellido;
     this->Dni = Dni;
-    this->Email=Email;
+    this->Email = Email;
     this->Puesto = Puesto;
 }
 
