@@ -1,0 +1,37 @@
+-----------------------------
+|  Bienvenido al Banco UCC  |
+-----------------------------
+
+Ingrese la opcion deseada:
+1) Nuevo cliente.
+    1) Profesional.
+        Ingrese Apellido: ____
+        Ingrese Nombre: _____
+        Ingrese Dni: _____
+        Ingrese Titulo: _____
+        Ingrese Actividad que desarrolla: _____
+        Ingrese Tiempo de Servicio: _____
+    2) Administrativo.
+        Ingrese Apellido: ____
+        Ingrese Nombre: _____
+        Ingrese Dni: _____
+        Ingrese Puesto que desempeña: ______
+2) Baja cliente.
+    Ingrese Nro de Cliente: _____
+3) Alta antiguo cliente.
+    Ingrese Nro de Cliente: _____
+4) Imprimir Alta.txt.
+5) Imprimir Baja.txt.
+6) Realizar Movimiento de Saldo.
+    1) Por Numero de Cuenta.
+        Ingrese Nro de Cuenta: _____
+    2) Por Numero de Cliente.
+        Ingrese Nro de Cliente: _____
+            .
+            .
+            Saldo actual: (muestra saldo actual).
+            1) Ingreso
+            2) Egreso
+7) Otorgar Tarjeta de Credito.
+    Ingrese Nro de Cliente: _____
+    

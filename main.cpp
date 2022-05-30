@@ -1,7 +1,11 @@
 #include <iostream>
+<<<<<<< HEAD
 #include "validacion.cpp"
 #include "tarjetas.cpp"
 
+=======
+#include "profesionales.cpp"
+>>>>>>> fela
 using namespace std;
 
 int main(){
