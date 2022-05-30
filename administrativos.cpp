@@ -1,3 +1,3 @@
 #include <iostream>
-#include "ingenieros.h"
+#include "administrativos.h"
 using namespace std;

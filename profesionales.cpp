@@ -1,3 +1,3 @@
 #include <iostream>
-#include "contadores.h"
+#include "profesionales.h"
 using namespace std;

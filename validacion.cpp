@@ -1,3 +1,7 @@
+/*
+  Agregar mensajes de error segun el error
+*/
+
 #include <iostream>
 #include "validacion.h"
 using namespace std;

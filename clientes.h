@@ -1,13 +1,13 @@
 #include <iostream>
 using namespace std;
 
-class EMPLEADO{
+class CLIENTE{
     protected:
         string Nombre, Apellido;
         int Nro;
         float Salario;
     public:
-        EMPLEADO();
+        CLIENTE();
         string getNombre();
         string getApellido();
         int getNro();
