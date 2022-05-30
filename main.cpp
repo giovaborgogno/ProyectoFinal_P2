@@ -7,8 +7,8 @@ int main(){
   string val;
 
   while(true){
-    cout << "Ingrese su DNI: "; getline(cin, val);
-    cout << V.CharOnly(val) << endl;
+    cout << "Ingrese su email: "; getline(cin, val);
+    cout << V.isEmail(val) << endl;
   }
   return 0;
 }
