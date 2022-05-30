@@ -3,17 +3,21 @@
 
 using namespace std;
 
+
 string CLIENTE::getNombre(){
   return Nombre;
 }
 string CLIENTE::getApellido(){
   return Apellido;
 }
-int CLIENTE::getNro(){
-  return Nro;
+int CLIENTE::getDni(){
+  return Dni;
 }
-float CLIENTE::getSalario(){
-  return Salario;
+string CLIENTE::getEmail(){
+  return Email;
+}
+float CLIENTE::getSueldo(){
+  return Sueldo;
 }
 void CLIENTE::setNombre(string Nombre){
   this->Nombre = Nombre;
@@ -21,9 +25,12 @@ void CLIENTE::setNombre(string Nombre){
 void CLIENTE::setApellido(string Apellido){
   this->Apellido = Apellido;
 }
-void CLIENTE::setNro(int Nro){
-  this->Nro = Nro;
+void CLIENTE::setDni(int Dni){
+  this->Dni = Dni;
 }
-void CLIENTE::setSalario(float Salario){
-  this->Salario = Salario;
+void CLIENTE::setEmail(string Email){
+  this->Email = Email;
+}
+void CLIENTE::setSueldo(float Sueldo){
+  this->Sueldo = Sueldo;
 }

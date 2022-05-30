@@ -1,10 +1,8 @@
 #include <iostream>
-#include "validacion.cpp"
+#include "profesionales.cpp"
 using namespace std;
 
 int main(){
-  VALIDACION V;
-  string val;
 
   while(true){
     cout << "Ingrese su email: "; getline(cin, val);

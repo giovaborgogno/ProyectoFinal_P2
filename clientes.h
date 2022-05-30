@@ -4,16 +4,18 @@ using namespace std;
 class CLIENTE{
     protected:
         string Nombre, Apellido;
-        int Nro;
-        float Salario;
+        int Dni;
+        string Email;
+        float Sueldo;
     public:
-        CLIENTE();
         string getNombre();
         string getApellido();
-        int getNro();
-        float getSalario();
+        string getEmail();
+        int getDni();
+        float getSueldo();
         void setNombre(string);
         void setApellido(string);
-        void setNro(int);
-        void setSalario(float);
+        void setDni(int);
+        void setEmail(string);
+        void setSueldo(float);
 };
