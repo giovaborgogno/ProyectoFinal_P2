@@ -1,6 +1,5 @@
 #include <iostream>
 #include "tarjetas.h"
-
 using namespace std;
 
 int CardCounter = 0;

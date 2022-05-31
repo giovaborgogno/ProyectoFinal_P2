@@ -6,7 +6,7 @@ class CUENTASUELDO{
     int NumeroDeCuenta;
     float Saldo;
   public:
-    CUENTASUELDO(int, float);
+    CUENTASUELDO(float Saldo=0);
     int getNrodeCuenta();
     float getSaldo();
     void setNrodeCuenta(int);

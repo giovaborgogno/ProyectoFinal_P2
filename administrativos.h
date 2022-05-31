@@ -8,7 +8,7 @@ private:
     string Puesto;
 
 public:
-    ADMINISTRATIVO(string, string, int, string, string);
+    ADMINISTRATIVO(string, string, int, string, string, float);
     string getPuesto();
     void setPuesto(string);
 };

@@ -3,6 +3,14 @@
 
 using namespace std;
 
+int AccountCounter=0;
+
+CUENTASUELDO::CUENTASUELDO(float Saldo){
+  NumeroDeCuenta=AccountCounter;
+  this->Saldo = Saldo;
+  AccountCounter++;
+}
+
 int CUENTASUELDO::getNrodeCuenta(){
   return NumeroDeCuenta;
 }
