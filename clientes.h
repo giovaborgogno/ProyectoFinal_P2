@@ -7,6 +7,7 @@ class CLIENTE{
         int Dni;
         string Email;
         float Sueldo;
+
     public:
         string getNombre();
         string getApellido();

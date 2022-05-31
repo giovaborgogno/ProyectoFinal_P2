@@ -3,10 +3,10 @@
 
 using namespace std;
 
-int AccountCounter = 0;
+int AccountCounter=0;
 
 CUENTASUELDO::CUENTASUELDO(float Saldo){
-  this->NumeroDeCuenta = AccountCounter;
+  NumeroDeCuenta=AccountCounter;
   this->Saldo = Saldo;
   Estado = 'A';
   AccountCounter++;

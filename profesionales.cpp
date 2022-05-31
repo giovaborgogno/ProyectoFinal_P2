@@ -11,6 +11,7 @@ using namespace std;
     this->Actividad = Actividad;
     this->TiempoServicio = TiempoServicio;
     this->Sueldo = Sueldo;
+    T = new TARJETA(this->Sueldo);
   }
   void PROFESIONAL::setTitulo(string Titulo){
     this->Titulo = Titulo;
