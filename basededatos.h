@@ -5,9 +5,9 @@ using namespace std;
 
 class BASEDEDATOS{
   private:
+  public:
     PROFESIONAL **ProfDB;
     ADMINISTRATIVO **AdminDB;
-  public:
     BASEDEDATOS(int);
     void AgregarPROFESIONAL(string,string,string,int,string,string,int,float);
     void AgregarADMINISTRATIVO(string,string,int,string,string,float);

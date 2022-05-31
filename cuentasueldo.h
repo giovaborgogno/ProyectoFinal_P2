@@ -8,10 +8,10 @@ class CUENTASUELDO{
     char Estado;
   public:
     CUENTASUELDO(float Saldo=0);
-    int getNrodeCuenta();
+    int getNumeroDeCuenta();
     float getSaldo();
     char getEstado();
-    void setNrodeCuenta(int);
+    void setNumeroDeCuenta(int);
     void setSaldo(float);
     void setEstado(char);
     void switchEstado();
