@@ -10,6 +10,7 @@ ADMINISTRATIVO::ADMINISTRATIVO(string Nombre, string Apellido, int Dni, string E
     this->Email = Email;
     this->Puesto = Puesto;
     this->Sueldo = Sueldo;
+    C = new CUENTASUELDO;
 }
 
 string ADMINISTRATIVO::getPuesto()

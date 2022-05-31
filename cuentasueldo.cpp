@@ -12,7 +12,7 @@ CUENTASUELDO::CUENTASUELDO(float Saldo){
   AccountCounter++;
 }
 
-int CUENTASUELDO::getNrodeCuenta(){
+int CUENTASUELDO::getNumeroDeCuenta(){
   return NumeroDeCuenta;
 }
 
@@ -24,7 +24,7 @@ char CUENTASUELDO::getEstado(){
   return Estado;
 }
 
-void CUENTASUELDO::setNrodeCuenta(int NumeroDeCuenta){
+void CUENTASUELDO::setNumeroDeCuenta(int NumeroDeCuenta){
   this->NumeroDeCuenta = NumeroDeCuenta;
 }
 

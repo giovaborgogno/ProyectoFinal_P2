@@ -2,12 +2,10 @@
 #include "profesionales.cpp"
 using namespace std;
 
-class ADMINISTRATIVO : public CLIENTE
-{
-private:
+class ADMINISTRATIVO : public CLIENTE{
+  private:
     string Puesto;
-
-public:
+  public:
     ADMINISTRATIVO(string, string, int, string, string, float);
     string getPuesto();
     void setPuesto(string);

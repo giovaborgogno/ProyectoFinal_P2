@@ -1,4 +1,5 @@
 #include <iostream>
+#include "cuentasueldo.cpp"
 using namespace std;
 
 class CLIENTE{
@@ -7,8 +8,8 @@ class CLIENTE{
         int Dni;
         string Email;
         float Sueldo;
-
     public:
+        CUENTASUELDO *C;
         string getNombre();
         string getApellido();
         string getEmail();

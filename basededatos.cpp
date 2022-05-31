@@ -6,8 +6,8 @@ int ProfDBIndex = 0;
 int AdminDBIndex = 0;
 
 BASEDEDATOS::BASEDEDATOS(int DBSize){
-  ProfDB = new PROFESIONAL*[P_DBSize];
-  AdminDB = new ADMINISTRATIVO*[A_DBSize];
+  ProfDB = new PROFESIONAL*[DBSize];
+  AdminDB = new ADMINISTRATIVO*[DBSize];
 }
 
 void BASEDEDATOS::AgregarPROFESIONAL(string Nombre, string Apellido, string Email, int Dni, string Titulo, string Actividad, int TiempoServicio, float Sueldo){

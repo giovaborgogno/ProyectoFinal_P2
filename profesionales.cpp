@@ -12,6 +12,7 @@ using namespace std;
     this->TiempoServicio = TiempoServicio;
     this->Sueldo = Sueldo;
     T = new TARJETA(this->Sueldo);
+    C = new CUENTASUELDO;
   }
   void PROFESIONAL::setTitulo(string Titulo){
     this->Titulo = Titulo;
