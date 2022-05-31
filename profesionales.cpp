@@ -2,7 +2,7 @@
 #include "profesionales.h"
 using namespace std;
 
-  PROFESIONAL::PROFESIONAL(string Nombre, string Apellido, string Email, int Dni, string Titulo, string Actividad, int TiempoServicio, float Sueldo){
+  PROFESIONAL::PROFESIONAL(string Nombre, string Apellido, int Dni, string Email, string Titulo, string Actividad, int TiempoServicio, float Sueldo){
     this->Nombre = Nombre;
     this->Apellido = Apellido;
     this->Email = Email;

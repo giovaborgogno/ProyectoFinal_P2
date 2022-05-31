@@ -11,7 +11,7 @@ class PROFESIONAL:public CLIENTE{
     int TiempoServicio;
     TARJETA *T;
   public:
-    PROFESIONAL(string, string, string, int, string, string, int, float);
+    PROFESIONAL(string, string, int, string, string, string, int, float);
     void setTitulo(string);
     void setActividad(string);
     void setTiempoServicio(int);
