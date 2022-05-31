@@ -13,6 +13,8 @@ TARJETA::TARJETA(float Sueldo){
     Tipo = "Plata";
   }else if(Sueldo<=140000){
     Tipo = "Oro";
+  }else{
+    Tipo="Platino";
   }
   CardCounter++;
 }
