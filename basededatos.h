@@ -9,7 +9,7 @@ class BASEDEDATOS{
     PROFESIONAL **ProfDB;
     ADMINISTRATIVO **AdminDB;
     BASEDEDATOS(int);
-    void AgregarPROFESIONAL(string,string,string,int,string,string,int,float);
+    void AgregarPROFESIONAL(string,string,int,string,string,string,int,float);
     void AgregarADMINISTRATIVO(string,string,int,string,string,float);
     void PrintPROFESIONALES();
     void PrintADMINISTRATIVOS();
