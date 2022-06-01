@@ -1,4 +1,0 @@
-Nro de Cuenta: 0	Estado: A	Saldo: 0	Apellido: Lucero	Puesto: Jefe
-Nro de Cuenta: 1	Estado: A	Saldo: 0	Apellido: Lucero	Puesto: Jefe
-Nro de Cuenta: 2	Estado: A	Saldo: 0	Apellido: Lucero	Puesto: Jefe
-Nro de Cuenta: 3	Estado: A	Saldo: 0	Apellido: Lucero	Puesto: Jefe
