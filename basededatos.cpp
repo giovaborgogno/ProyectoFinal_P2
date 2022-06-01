@@ -11,7 +11,7 @@ BASEDEDATOS::BASEDEDATOS(int DBSize){
 }
 
 void BASEDEDATOS::AgregarPROFESIONAL(string Nombre, string Apellido, int Dni, string Email, string Titulo, string Actividad, int TiempoServicio, float Sueldo){
-  ProfDB[ProfDBIndex] = new PROFESIONAL(Nombre,Apellido,Email,Dni,Titulo,Actividad,TiempoServicio,Sueldo);
+  ProfDB[ProfDBIndex] = new PROFESIONAL(Nombre,Apellido,Dni,Email,Titulo,Actividad,TiempoServicio,Sueldo);
   ProfDBIndex++;
 }
 
