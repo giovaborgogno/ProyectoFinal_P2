@@ -1,18 +1,16 @@
 #include <iostream>
 #include "validacion.cpp"
-//#include "administrativos.cpp"
-//#include "profesionales.cpp"
+#include "basededatos.cpp"
 
 using namespace std;
 
 class PROGRAMA{
   private:
     VALIDACION *Verify;
-    //PROFESIONAL *Prof;
-    //ADMINISTRATIVO *Admin;
-
+    BASEDEDATOS *DB;
+    int Convert(string,bool);
+    void PresioneUnaTeclaParaContinuar();
   public:
-    int Convert(string v);
+    PROGRAMA();
     void Start();
-
 };

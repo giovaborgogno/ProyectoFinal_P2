@@ -8,13 +8,15 @@ class BASEDEDATOS{
   public:
     PROFESIONAL **ProfDB;
     ADMINISTRATIVO **AdminDB;
-    BASEDEDATOS(int);
+    BASEDEDATOS(int DBSize=100);
     void AgregarPROFESIONAL(string,string,int,string,string,string,int,float);
     void AgregarADMINISTRATIVO(string,string,int,string,string,float);
+    void AltaCliente(int);
+    void BajaCliente(int);
     void PrintPROFESIONALES();
     void PrintADMINISTRATIVOS();
-    void PrintClientesDeAlta();
-    void PrintClientesDeBaja();
+    void PrintClientesDeAlta(bool);
+    void PrintClientesDeBaja(bool);
     void PrintDB();
     void SortDB();
 };
