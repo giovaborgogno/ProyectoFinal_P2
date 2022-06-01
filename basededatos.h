@@ -11,10 +11,10 @@ class BASEDEDATOS{
     BASEDEDATOS(int);
     void AgregarPROFESIONAL(string,string,string,int,string,string,int,float);
     void AgregarADMINISTRATIVO(string,string,int,string,string,float);
-    void PrintClientesDeAlta();
-    void PrintClientesDeBaja();
     void PrintPROFESIONALES();
     void PrintADMINISTRATIVOS();
+    void PrintClientesDeAlta();
+    void PrintClientesDeBaja();
     void PrintDB();
     void SortDB();
 };

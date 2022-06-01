@@ -5,6 +5,7 @@ using namespace std;
 
 int ProfDBIndex = 0;
 int AdminDBIndex = 0;
+ofstream file;
 
 BASEDEDATOS::BASEDEDATOS(int DBSize){
   ProfDB = new PROFESIONAL*[DBSize];
@@ -21,55 +22,104 @@ void BASEDEDATOS::AgregarADMINISTRATIVO(string Nombre, string Apellido, int Dni,
   AdminDBIndex++;
 }
 
+void BASEDEDATOS::PrintPROFESIONALES(){
+
+    file.open("Profesionales.csv", ios::out);
+
+    file << "Nro de Cuenta,Estado,DNI,Apellido,Nombre,Puesto,Sueldo,Saldo,Email"<<endl;
+        for (int x = 0; x < ProfDBIndex; x++)
+    {
+        file <<ProfDB[x]->C->getNumeroDeCuenta()
+        << "," << ProfDB[x]->C->getEstado()
+        << "," << ProfDB[x]->getDni()
+        << "," << ProfDB[x]->getApellido()
+        << "," << ProfDB[x]->getNombre()
+        << "," << ProfDB[x]->getPuesto()
+        << "," << ProfDB[x]->getSueldo()
+        << "," << ProfDB[x]->C->getSaldo()
+        << "," << ProfDB[x]->getEmail() << endl;
+    }
+    file.close();
+}
+
 void BASEDEDATOS::PrintADMINISTRATIVOS(){
-ofstream administrativoscsv;
 
-    administrativoscsv.open("Administrativos.csv", ios::out);
+    file.open("Administrativos.csv", ios::out);
 
-    administrativoscsv << "Nro de Cuenta,Estado,DNI,Apellido,Nombre,Puesto,Sueldo,Saldo,Email"<<endl;
+    file << "Nro de Cuenta,Estado,DNI,Apellido,Nombre,Puesto,Sueldo,Saldo,Email"<<endl;
         for (int x = 0; x < AdminDBIndex; x++)
     {
-        administrativoscsv <<AdminDB[x]->C->getNumeroDeCuenta() << "," << AdminDB[x]->C->getEstado() << "," << AdminDB[x]->getDni() << "," << AdminDB[x]->getApellido()<< "," << AdminDB[x]->getNombre() << "," << AdminDB[x]->getPuesto()<< "," << AdminDB[x]->getSueldo()<< "," << AdminDB[x]->C->getSaldo()<< "," << AdminDB[x]->getEmail() << endl;
+        file <<AdminDB[x]->C->getNumeroDeCuenta()
+        << "," << AdminDB[x]->C->getEstado()
+        << "," << AdminDB[x]->getDni()
+        << "," << AdminDB[x]->getApellido()
+        << "," << AdminDB[x]->getNombre()
+        << "," << AdminDB[x]->getPuesto()
+        << "," << AdminDB[x]->getSueldo()
+        << "," << AdminDB[x]->C->getSaldo()
+        << "," << AdminDB[x]->getEmail() << endl;
     }
-    administrativoscsv.close();
+    file.close();
 }
 
 void BASEDEDATOS::PrintClientesDeAlta(){
-ofstream altacsv;
 
-    altacsv.open("ClientesDeAlta.csv", ios::out);
+    file.open("ClientesDeAlta.csv", ios::out);
 
-    altacsv << "Nro de Cuenta,DNI,Apellido,Nombre,Sueldo,Saldo,Email"<<endl;
-    
+    file << "Nro de Cuenta,DNI,Apellido,Nombre,Sueldo,Saldo,Email"<<endl;
+
         for (int x = 0; x < AdminDBIndex; x++)
     {
       if(AdminDB[x]->C->getEstado()=='A')
-        altacsv <<AdminDB[x]->C->getNumeroDeCuenta() <<  "," << AdminDB[x]->getDni() << "," << AdminDB[x]->getApellido()<< "," << AdminDB[x]->getNombre() << ","  << AdminDB[x]->getSueldo()<< "," << AdminDB[x]->C->getSaldo()<< "," << AdminDB[x]->getEmail() << endl;
+        file<<AdminDB[x]->C->getNumeroDeCuenta()
+        << "," << AdminDB[x]->getDni()
+        << "," << AdminDB[x]->getApellido()
+        << "," << AdminDB[x]->getNombre()
+        << "," << AdminDB[x]->getSueldo()
+        << "," << AdminDB[x]->C->getSaldo()
+        << "," << AdminDB[x]->getEmail() << endl;
     }
             for (int x = 0; x < ProfDBIndex; x++)
     {
       if(ProfDB[x]->C->getEstado()=='A')
-        altacsv <<ProfDB[x]->C->getNumeroDeCuenta() <<  "," << ProfDB[x]->getDni() << "," << ProfDB[x]->getApellido()<< "," << ProfDB[x]->getNombre() << ","  << ProfDB[x]->getSueldo()<< "," << ProfDB[x]->C->getSaldo()<< "," << ProfDB[x]->getEmail() << endl;
+        file<<ProfDB[x]->C->getNumeroDeCuenta()
+        << "," << ProfDB[x]->getDni()
+        << "," << ProfDB[x]->getApellido()
+        << "," << ProfDB[x]->getNombre()
+        << "," << ProfDB[x]->getSueldo()
+        << "," << ProfDB[x]->C->getSaldo()
+        << "," << ProfDB[x]->getEmail() << endl;
     }
-    altacsv.close();
+    file.close();
 }
 
 void BASEDEDATOS::PrintClientesDeBaja(){
-ofstream bajacsv;
 
-    bajacsv.open("ClientesDeBaja.csv", ios::out);
+    file.open("ClientesDeBaja.csv", ios::out);
 
-    bajacsv << "Nro de Cuenta,DNI,Apellido,Nombre,Sueldo,Saldo,Email"<<endl;
-    
+    file << "Nro de Cuenta,DNI,Apellido,Nombre,Sueldo,Saldo,Email"<<endl;
+
         for (int x = 0; x < AdminDBIndex; x++)
     {
       if(AdminDB[x]->C->getEstado()=='B')
-        bajacsv <<AdminDB[x]->C->getNumeroDeCuenta() <<  "," << AdminDB[x]->getDni() << "," << AdminDB[x]->getApellido()<< "," << AdminDB[x]->getNombre() << ","  << AdminDB[x]->getSueldo()<< "," << AdminDB[x]->C->getSaldo()<< "," << AdminDB[x]->getEmail() << endl;
+        file<<AdminDB[x]->C->getNumeroDeCuenta()
+        << "," << AdminDB[x]->getDni()
+        << "," << AdminDB[x]->getApellido()
+        << "," << AdminDB[x]->getNombre()
+        << "," << AdminDB[x]->getSueldo()
+        << "," << AdminDB[x]->C->getSaldo()
+        << "," << AdminDB[x]->getEmail() << endl;
     }
             for (int x = 0; x < ProfDBIndex; x++)
     {
       if(ProfDB[x]->C->getEstado()=='B')
-        bajacsv <<ProfDB[x]->C->getNumeroDeCuenta() <<  "," << ProfDB[x]->getDni() << "," << ProfDB[x]->getApellido()<< "," << ProfDB[x]->getNombre() << ","  << ProfDB[x]->getSueldo()<< "," << ProfDB[x]->C->getSaldo()<< "," << ProfDB[x]->getEmail() << endl;
+        file<<ProfDB[x]->C->getNumeroDeCuenta()
+        << "," << ProfDB[x]->getDni()
+        << "," << ProfDB[x]->getApellido()
+        << "," << ProfDB[x]->getNombre()
+        << "," << ProfDB[x]->getSueldo()
+        << "," << ProfDB[x]->C->getSaldo()
+        << "," << ProfDB[x]->getEmail() << endl;
     }
-    bajacsv.close();
+    file.close();
 }
