@@ -13,11 +13,12 @@ class BASEDEDATOS{
     void AgregarADMINISTRATIVO(string,string,int,string,string,float);
     void AltaCliente(int);
     void BajaCliente(int);
-    void PrintPROFESIONALES();
-    void PrintADMINISTRATIVOS();
+    void PrintPROFESIONALES(bool);
+    void PrintADMINISTRATIVOS(bool);
     void PrintClientesDeAlta(bool);
     void PrintClientesDeBaja(bool);
-    void PrintDB();
+    void PrintDB(bool);
+    bool isClient(int);
     CLIENTE* GetCliente(int);
     void SortDB();
 };

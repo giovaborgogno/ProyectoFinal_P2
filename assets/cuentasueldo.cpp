@@ -52,15 +52,23 @@ void CUENTASUELDO::Extraccion(float Monto){
     HistorialDeMovimientos[HistoryIndex][0] = "E";
     HistorialDeMovimientos[HistoryIndex][1] = to_string(Monto);
     HistoryIndex++;
+    cout << endl <<"Extraccion realizada exitosamente!"<< endl << endl;
   }
   else{
-    cout << "La cantidad a extraer supera el saldo." << endl;
+    cout << endl << "La cantidad a extraer supera el saldo." << endl<<endl;
   }
 }
 
 void CUENTASUELDO::Deposito(float Monto){
   Saldo+=Monto;
   HistorialDeMovimientos[HistoryIndex][0] = "D";
+  HistorialDeMovimientos[HistoryIndex][1] = to_string(Monto);
+  HistoryIndex++;
+}
+
+void CUENTASUELDO::Acreditacion(float Monto){
+  Saldo+=Monto;
+  HistorialDeMovimientos[HistoryIndex][0] = "A";
   HistorialDeMovimientos[HistoryIndex][1] = to_string(Monto);
   HistoryIndex++;
 }
