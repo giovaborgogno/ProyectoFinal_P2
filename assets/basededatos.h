@@ -18,5 +18,6 @@ class BASEDEDATOS{
     void PrintClientesDeAlta(bool);
     void PrintClientesDeBaja(bool);
     void PrintDB();
+    CLIENTE* GetCliente(int);
     void SortDB();
 };

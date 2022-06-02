@@ -1,9 +1,11 @@
 #include <iostream>
+#include <iomanip>
 #include "cuentasueldo.h"
 
 using namespace std;
 
 int AccountCounter=1;
+int HistoryIndex=0;
 
 CUENTASUELDO::CUENTASUELDO(float Saldo){
   NumeroDeCuenta=AccountCounter;
@@ -47,6 +49,9 @@ void CUENTASUELDO::switchEstado(){
 void CUENTASUELDO::Extraccion(float Monto){
   if(Saldo>=Monto){
     Saldo-=Monto;
+    HistorialDeMovimientos[HistoryIndex][0] = "E";
+    HistorialDeMovimientos[HistoryIndex][1] = to_string(Monto);
+    HistoryIndex++;
   }
   else{
     cout << "La cantidad a extraer supera el saldo." << endl;
@@ -55,4 +60,14 @@ void CUENTASUELDO::Extraccion(float Monto){
 
 void CUENTASUELDO::Deposito(float Monto){
   Saldo+=Monto;
+  HistorialDeMovimientos[HistoryIndex][0] = "D";
+  HistorialDeMovimientos[HistoryIndex][1] = to_string(Monto);
+  HistoryIndex++;
+}
+
+void CUENTASUELDO::showHistory(){
+  cout << "MOVIMIENTOS" << '\t' << "MONTO" << endl;
+  for(int i=0; i<HistoryIndex; i++){
+      cout << setw(5) << HistorialDeMovimientos[i][0] << setw(5) << '\t' << HistorialDeMovimientos[i][1] << endl;
+  }
 }

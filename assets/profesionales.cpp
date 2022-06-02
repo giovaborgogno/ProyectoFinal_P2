@@ -14,7 +14,7 @@ using namespace std;
     C = new CUENTASUELDO;
     switch(TarjetaSN){
       case 'S':
-        T = new TARJETA(this->Sueldo,1);   
+        T = new TARJETA(this->Sueldo,1);
         break;
       case 'N':
         T = new TARJETA(this->Sueldo,0);
