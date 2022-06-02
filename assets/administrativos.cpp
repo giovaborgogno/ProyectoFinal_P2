@@ -11,6 +11,7 @@ ADMINISTRATIVO::ADMINISTRATIVO(string Nombre, string Apellido, int Dni, string E
     this->Puesto = Puesto;
     this->Sueldo = Sueldo;
     C = new CUENTASUELDO;
+    C->Acreditacion(Sueldo);
 }
 
 string ADMINISTRATIVO::getPuesto()

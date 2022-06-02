@@ -4,9 +4,8 @@ using namespace std;
 
 class CLIENTE{
     protected:
-        string Nombre, Apellido;
+        string Nombre, Apellido, Email;
         int Dni;
-        string Email;
         float Sueldo;
     public:
         CUENTASUELDO *C;

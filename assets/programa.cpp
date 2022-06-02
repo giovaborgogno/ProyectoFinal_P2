@@ -362,7 +362,7 @@ void PROGRAMA::Start(){
       cout << "TABLA DE CLIENTES DE ALTA" << endl << endl;
       // Impresion de la Tabla de clientes de Alta -->
       DB->PrintClientesDeAlta(0);
-        cout << endl << "Numero de Cuenta (0 para volver): "; cin.sync(); getline(cin, val);
+        cout << endl << "Numero de Cuenta (0 para salir): "; cin.sync(); getline(cin, val);
         //Validacion de entrada
         if (Verify->NumbersOnly(val)==1){
           if (Convert(val,1)==1){
@@ -396,7 +396,7 @@ void PROGRAMA::Start(){
       cout << "TABLA DE CLIENTES DE BAJA" << endl << endl;
       // Impresion de la Tabla de clientes de Baja -->
       DB->PrintClientesDeBaja(0);
-        cout << endl << "Numero de Cuenta (0 para volver): "; cin.sync(); getline(cin, val);
+        cout << endl << "Numero de Cuenta (0 para salir): "; cin.sync(); getline(cin, val);
         //Validacion de entrada
         if (Verify->NumbersOnly(val)==1){
           if (Convert(val,1)==1){
@@ -438,7 +438,13 @@ void PROGRAMA::Start(){
         if (Verify->NumbersOnly(val)==1){
           if (Convert(val,1)==1){
             option = stoi(val);
-            break;
+            if(option<=5){
+              break;
+            }
+            else{
+              cout << endl << "Ingrese una opcion valida" << endl << endl;
+              PresioneUnaTeclaParaContinuar();
+            }
           }else{
             cout << endl<< "El numero ingresado es demasiado grande" << endl << endl;
             PresioneUnaTeclaParaContinuar();
@@ -456,44 +462,44 @@ void PROGRAMA::Start(){
         break;
 
         case 1://Imprimir Clientes de Alta
-        DB->PrintClientesDeAlta(1);
         system("CLS || clear");
-        cout << "Archivo generado exitosamente!" << endl << endl;
+        DB->PrintClientesDeAlta(0);
+        DB->PrintClientesDeAlta(1);
+        cout<< endl << "Archivo generado exitosamente!" << endl << endl;
         PresioneUnaTeclaParaContinuar();
         break;
 
         case 2://Imprimir Clientes de Baja
-        DB->PrintClientesDeBaja(1);
         system("CLS || clear");
-        cout << "Archivo generado exitosamente!" << endl << endl;
+        DB->PrintClientesDeBaja(1);
+        DB->PrintClientesDeBaja(0);
+        cout<< endl<< "Archivo generado exitosamente!" << endl << endl;
         PresioneUnaTeclaParaContinuar();
         break;
 
         case 3://Imprimir Administrativos
-        DB->PrintADMINISTRATIVOS();
         system("CLS || clear");
-        cout << "Archivo generado exitosamente!" << endl << endl;
+        DB->PrintADMINISTRATIVOS(1);
+        DB->PrintADMINISTRATIVOS(0);
+        cout<< endl << "Archivo generado exitosamente!" << endl << endl;
         PresioneUnaTeclaParaContinuar();
         break;
 
         case 4://Imprimir Profesionales
-        DB->PrintPROFESIONALES();
         system("CLS || clear");
-        cout << "Archivo generado exitosamente!" << endl << endl;
+        DB->PrintPROFESIONALES(1);
+        DB->PrintPROFESIONALES(0);
+        cout<< endl << "Archivo generado exitosamente!" << endl << endl;
         PresioneUnaTeclaParaContinuar();
         break;
 
         case 5://Imprimir Base de Datos
-        DB->PrintDB();
         system("CLS || clear");
-        cout << "Archivo generado exitosamente!" << endl << endl;
+        DB->PrintDB(1);
+        DB->PrintDB(0);
+        cout<< endl << "Archivo generado exitosamente!" << endl << endl;
         PresioneUnaTeclaParaContinuar();
         break;
-
-        default:
-            cout << endl<< "La opcion ingresada no es valida" << endl << endl;
-            PresioneUnaTeclaParaContinuar();
-            break;
       }
 
       break;
@@ -503,99 +509,108 @@ void PROGRAMA::Start(){
       cout << "MOVIMIENTOS" << endl << endl;
       //Ingreso nro de Cuenta
       while (true){
-        cout << "Numero de Cuenta: "; cin.sync(); getline(cin, val);
+        cout << "Numero de Cuenta (0 para salir): "; cin.sync(); getline(cin, val);
         //Validacion de entrada
         if (Verify->NumbersOnly(val)==1){
           if (Convert(val,1)==1){
             NRO = stoi(val);
-            while (true){
-              system("CLS || clear");
-              cout << "CLIENTE - " << DB->GetCliente(NRO)->getNombre() << " " << DB->GetCliente(NRO)->getApellido() << endl << endl;
-              cout << "SALDO: " << DB->GetCliente(NRO)->C->getSaldo() << endl << endl;
-              cout << "1) Depositar" << endl;
-              cout << "2) Extraer" << endl;
-              cout << "3) Ver historial de movimientos" << endl;
-              cout << "0) Volver" << endl;
-              cout << endl << "Elija una opcion: "; cin.sync(); getline(cin, val);
-              //Validacion de entrada
-              if (Verify->NumbersOnly(val)==1){
-                if (Convert(val,1)==1){
-                  option = stoi(val);
-                  break;
-                }else{
-                  cout << endl<< "El numero ingresado es demasiado grande" << endl << endl;
-                  PresioneUnaTeclaParaContinuar();
-                }
-              }else if(Verify->NumbersOnly(val)==0){
-                cout << endl<< "El campo no puede quedar vacio" << endl << endl;
-                PresioneUnaTeclaParaContinuar();
-              }else if(Verify->NumbersOnly(val)==-1){
-                cout << endl<< "El ingreso debe ser numerico" << endl << endl;
-                PresioneUnaTeclaParaContinuar();
-              }
+            if(NRO==0){
+                break;
             }
-            switch (option){
-              case 0:
-              break;
-
-              case 1:
-                system("CLS || clear");
+            else{
+              if(DB->isClient(NRO)==true){
                 while (true){
-                  cout << "Ingrese el monto a DEPOSITAR: "; cin.sync(); getline(cin, val);
+                  system("CLS || clear");
+                  cout << "CLIENTE - " << DB->GetCliente(NRO)->getNombre() << " " << DB->GetCliente(NRO)->getApellido() << endl << endl;
+                  cout << "SALDO: " << DB->GetCliente(NRO)->C->getSaldo() << endl << endl;
+                  cout << "1) Depositar" << endl;
+                  cout << "2) Extraer" << endl;
+                  cout << "3) Ver historial de movimientos" << endl;
+                  cout << "0) Volver" << endl;
+                  cout << endl << "Elija una opcion: "; cin.sync(); getline(cin, val);
                   //Validacion de entrada
-                  if (Verify->FloatOnly(val)==1){
-                    if (Convert(val,0)==1){
-                      Monto = stof(val);
-                      break;
+                  if (Verify->NumbersOnly(val)==1){
+                    if (Convert(val,1)==1){
+                      option = stoi(val);
+                      if(option<=3){
+                        break;
+                      }
+                      else{
+                        cout << endl << "Ingrese una opcion valida" << endl << endl;
+                        PresioneUnaTeclaParaContinuar();
+                      }
                     }else{
                       cout << endl<< "El numero ingresado es demasiado grande" << endl << endl;
+                      PresioneUnaTeclaParaContinuar();
                     }
-                  }else if(Verify->FloatOnly(val)==0){
+                  }else if(Verify->NumbersOnly(val)==0){
                     cout << endl<< "El campo no puede quedar vacio" << endl << endl;
-                  }else if(Verify->FloatOnly(val)==-1){
-                    cout << endl<< "El ingreso debe ser numerico y/o contener UN punto" << endl << endl;
+                    PresioneUnaTeclaParaContinuar();
+                  }else if(Verify->NumbersOnly(val)==-1){
+                    cout << endl<< "El ingreso debe ser numerico" << endl << endl;
+                    PresioneUnaTeclaParaContinuar();
                   }
                 }
-                DB->GetCliente(NRO)->C->Deposito(Monto);
-                cout << endl <<"Deposito realizada exitosamente!"<< endl << endl;
-                PresioneUnaTeclaParaContinuar();
-              break;
-
-              case 2:
-              system("CLS || clear");
-              while (true){
-                cout << "Ingrese el monto a EXTRAER: "; cin.sync(); getline(cin, val);
-                //Validacion de entrada
-                if (Verify->FloatOnly(val)==1){
-                  if (Convert(val,0)==1){
-                    Monto = stof(val);
-                    break;
-                  }else{
-                    cout << endl<< "El numero ingresado es demasiado grande" << endl << endl;
-                  }
-                }else if(Verify->FloatOnly(val)==0){
-                  cout << endl<< "El campo no puede quedar vacio" << endl << endl;
-                }else if(Verify->FloatOnly(val)==-1){
-                  cout << endl<< "El ingreso debe ser numerico y/o contener UN punto" << endl << endl;
-                }
-              }
-              DB->GetCliente(NRO)->C->Extraccion(Monto);
-              cout << endl <<"Extraccion realizada exitosamente!"<< endl << endl;
-              PresioneUnaTeclaParaContinuar();
-              break;
-
-              case 3:
-              system("CLS || clear");
-              DB->GetCliente(NRO)->C->showHistory();
-              cout << endl;
-              PresioneUnaTeclaParaContinuar();
-              break;
-
-              default:
-                  cout << endl<< "La opcion ingresada no es valida" << endl << endl;
+                switch (option){
+                  case 0:
                   break;
+                  case 1:
+                    while (true){
+                      cout << endl << "Ingrese el monto a DEPOSITAR: "; cin.sync(); getline(cin, val);
+                      //Validacion de entrada
+                      if (Verify->FloatOnly(val)==1){
+                        if (Convert(val,0)==1){
+                          Monto = stof(val);
+                          break;
+                        }else{
+                          cout << endl<< "El numero ingresado es demasiado grande" << endl << endl;
+                        }
+                      }else if(Verify->FloatOnly(val)==0){
+                        cout << endl<< "El campo no puede quedar vacio" << endl << endl;
+                      }else if(Verify->FloatOnly(val)==-1){
+                        cout << endl<< "El ingreso debe ser numerico y/o contener UN punto" << endl << endl;
+                      }
+                    }
+                    DB->GetCliente(NRO)->C->Deposito(Monto);
+                    cout << endl <<"Deposito realizada exitosamente!"<< endl << endl;
+                    PresioneUnaTeclaParaContinuar();
+                  break;
+
+                  case 2:
+                  while (true){
+                    cout << endl << "Ingrese el monto a EXTRAER: "; cin.sync(); getline(cin, val);
+                    //Validacion de entrada
+                    if (Verify->FloatOnly(val)==1){
+                      if (Convert(val,0)==1){
+                        Monto = stof(val);
+                        break;
+                      }else{
+                        cout << endl<< "El numero ingresado es demasiado grande" << endl << endl;
+                      }
+                    }else if(Verify->FloatOnly(val)==0){
+                      cout << endl<< "El campo no puede quedar vacio" << endl << endl;
+                    }else if(Verify->FloatOnly(val)==-1){
+                      cout << endl<< "El ingreso debe ser numerico y/o contener UN punto" << endl << endl;
+                    }
+                  }
+                  DB->GetCliente(NRO)->C->Extraccion(Monto);
+
+                  PresioneUnaTeclaParaContinuar();
+                  break;
+
+                  case 3:
+                  system("CLS || clear");
+                  DB->GetCliente(NRO)->C->showHistory();
+                  cout << endl;
+                  PresioneUnaTeclaParaContinuar();
+                  break;
+                }
+                break;
+              }
+              else{
+                cout << endl <<"El cliente no se encuentra en el sistema o esta dado de baja" << endl << endl;
+              }
             }
-            break;
           }else{
             cout << endl<< "El numero ingresado es demasiado grande" << endl << endl;
           }
