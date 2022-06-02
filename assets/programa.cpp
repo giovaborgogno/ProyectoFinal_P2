@@ -12,6 +12,7 @@ void PROGRAMA::PresioneUnaTeclaParaContinuar(){
   cout << "<Presione ENTER para continuar>";
   cin.sync();
   cin.ignore();
+  system("CLS || clear");
 }
 
 int PROGRAMA::Convert(string v, bool option)
@@ -62,11 +63,10 @@ void PROGRAMA::Start(){
       cout << "1) Nuevo Cliente" << endl;
       cout << "2) Baja Cliente" << endl;
       cout << "3) Alta antiguo Cliente" << endl;
-      cout << "4) Imprimir Alta" << endl;
-      cout << "5) Imprimir Baja" << endl;
-      cout << "6) Realizar movimiento de saldo" << endl;
-      cout << "7) Otorgar tarjeta de credito" << endl;
-      cout << "8) Salir" << endl;
+      cout << "4) Imprimir" << endl;
+      cout << "5) Realizar movimiento de saldo" << endl;
+      cout << "6) Otorgar tarjeta de credito" << endl;
+      cout << "7) Salir" << endl;
       cout << endl << "Que desea hacer? "; cin.sync(); getline(cin, val);
       //Validacion de entrada
       if (Verify->NumbersOnly(val)==1){
@@ -375,21 +375,116 @@ void PROGRAMA::Start(){
       }
       break;
 
-      case 4://Imprimir Alta
-      DB->PrintClientesDeAlta(1);
+      case 4://Imprimir
+      cont=0;
+      option=0;
+      while (true){
+        if (cont == 0){
+          system("CLS || clear");
+          cont++;
+        }
+        else{
+          PresioneUnaTeclaParaContinuar();
+        }
+        cout << "SISTEMA DE GESTION BANCARIA - UCC" << endl << endl;
+        cout << "1) Imprimir Clientes de Alta" << endl;
+        cout << "2) Imprimir Clientes de Baja" << endl;
+        cout << "3) Imprimir Administrativos" << endl;
+        cout << "4) Imprimir Profesionales" << endl;
+        cout << "5) Imprimir Base de Datos" << endl;
+        cout << endl << "Elija una opcion: "; cin.sync(); getline(cin, val);
+        //Validacion de entrada
+        if (Verify->NumbersOnly(val)==1){
+          if (Convert(val,1)==1){
+            option = stoi(val);
+            break;
+          }else{
+            cout << "El numero ingresado es demasiado grande" << endl << endl;
+          }
+        }else if(Verify->NumbersOnly(val)==0){
+          cout << "El campo no puede quedar vacio" << endl << endl;
+        }else if(Verify->NumbersOnly(val)==-1){
+          cout << "El ingreso debe ser numerico" << endl << endl;
+        }
+      }
+      switch (option){
+        case 1://Imprimir Clientes de Alta
+        DB->PrintClientesDeAlta(1);
+        break;
+
+        case 2://Imprimir Clientes de Baja
+        DB->PrintClientesDeBaja(1);
+        break;
+
+        case 3://Imprimir Administrativos
+        DB->PrintADMINISTRATIVOS();
+        break;
+
+        case 4://Imprimir Profesionales
+        DB->PrintPROFESIONALES();
+        break;
+
+        case 5://Imprimir Base de Datos
+        DB->PrintDB();
+        break;
+
+        default:
+            cout << "La opcion ingresada no es valida" << endl << endl;
+            break;
+      }
+
       break;
 
-      case 5://Imprimir Baja
-      DB->PrintClientesDeBaja(1);
-      break;
-
-      case 6://Realizar movimiento de saldo
+      case 5://Realizar movimiento de saldo
       //Ingreso nro de Cuenta
       while (true){
         cout << "Numero de Cuenta: "; cin.sync(); getline(cin, val);
         //Validacion de entrada
         if (Verify->NumbersOnly(val)==1){
           if (Convert(val,1)==1){
+            NRO = stoi(val);
+            cont=0;
+            option=0;
+            while (true){
+              if (cont == 0){
+                system("CLS || clear");
+                cont++;
+              }
+              else{
+                PresioneUnaTeclaParaContinuar();
+              }
+              cout << "SISTEMA DE GESTION BANCARIA - UCC" << endl << endl;
+              cout << "SALDO: " << endl;
+              cout << "1) Depositar" << endl;
+              cout << "2) Extraer" << endl;
+              cout << endl << "Elija una opcion: "; cin.sync(); getline(cin, val);
+              //Validacion de entrada
+              if (Verify->NumbersOnly(val)==1){
+                if (Convert(val,1)==1){
+                  option = stoi(val);
+                  break;
+                }else{
+                  cout << "El numero ingresado es demasiado grande" << endl << endl;
+                }
+              }else if(Verify->NumbersOnly(val)==0){
+                cout << "El campo no puede quedar vacio" << endl << endl;
+              }else if(Verify->NumbersOnly(val)==-1){
+                cout << "El ingreso debe ser numerico" << endl << endl;
+              }
+            }
+            /*switch (option){
+              case 1:
+
+              break;
+
+              case 2:
+
+              break;
+
+              default:
+                  cout << "La opcion ingresada no es valida" << endl << endl;
+                  break;
+            }*/
             break;
           }else{
             cout << "El numero ingresado es demasiado grande" << endl << endl;
@@ -402,12 +497,14 @@ void PROGRAMA::Start(){
       }
       break;
 
-      case 7://Otorgar tarjeta de credito
+      case 6://Otorgar tarjeta de credito
       while (true){
         cout << "Numero de Cuenta: "; cin.sync(); getline(cin, val);
         //Validacion de entrada
         if (Verify->NumbersOnly(val)==1){
           if (Convert(val,1)==1){
+            NRO = stoi(val);
+
             break;
           }else{
             cout << "El numero ingresado es demasiado grande" << endl << endl;
@@ -420,7 +517,7 @@ void PROGRAMA::Start(){
       }
       break;
 
-      case 8://Salir
+      case 7://Salir
       exit(0);
 
       default:
