@@ -320,3 +320,29 @@ void BASEDEDATOS::PrintDB(){
     }
     file.close();
 }
+
+CLIENTE* BASEDEDATOS::GetCliente(int NRO){
+  CLIENTE *Cl;
+  bool ProfCount = false;
+  for(int i=0;i<ProfDBIndex;i++){
+    if(ProfDB[i]->C->getEstado()=='A'){
+      if(ProfDB[i]->C->getNumeroDeCuenta()==NRO){
+        Cl = ProfDB[i];
+        return Cl;
+      }
+    }
+  }
+  if(ProfCount == false){
+    bool AdminCount = 0;
+    for(int i=0;i<AdminDBIndex;i++){
+      if(AdminDB[i]->C->getEstado()=='A'){
+        if(AdminDB[i]->C->getNumeroDeCuenta()==NRO){
+          Cl = AdminDB[i];
+          return Cl;
+        }
+      }
+    }
+    if(AdminCount == false){
+        cout << "El cliente ingresado no se encuentra en el sistema" << endl;
+    }
+}
