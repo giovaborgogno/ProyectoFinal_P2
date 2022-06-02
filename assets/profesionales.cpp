@@ -2,7 +2,7 @@
 #include "profesionales.h"
 using namespace std;
 
-  PROFESIONAL::PROFESIONAL(string Nombre, string Apellido, int Dni, string Email, string Titulo, string Actividad, int TiempoServicio, float Sueldo){
+  PROFESIONAL::PROFESIONAL(string Nombre, string Apellido, int Dni, string Email, string Titulo, string Actividad, int TiempoServicio, float Sueldo, char TarjetaSN){
     this->Nombre = Nombre;
     this->Apellido = Apellido;
     this->Email = Email;
@@ -11,8 +11,15 @@ using namespace std;
     this->Actividad = Actividad;
     this->TiempoServicio = TiempoServicio;
     this->Sueldo = Sueldo;
-    T = new TARJETA(this->Sueldo);
     C = new CUENTASUELDO;
+    switch(TarjetaSN){
+      case 'S':
+        T = new TARJETA(this->Sueldo,1);   
+        break;
+      case 'N':
+        T = new TARJETA(this->Sueldo,0);
+        break;
+    }
   }
   void PROFESIONAL::setTitulo(string Titulo){
     this->Titulo = Titulo;
