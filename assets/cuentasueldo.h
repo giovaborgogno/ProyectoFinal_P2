@@ -18,5 +18,6 @@ class CUENTASUELDO{
     void switchEstado();
     void Extraccion(float);
     void Deposito(float);
+    void Acreditacion(float);
     void showHistory();
 };

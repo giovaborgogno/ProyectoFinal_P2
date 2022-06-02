@@ -20,6 +20,7 @@ using namespace std;
         T = new TARJETA(this->Sueldo,0);
         break;
     }
+    C->Acreditacion(Sueldo);
   }
   void PROFESIONAL::setTitulo(string Titulo){
     this->Titulo = Titulo;
