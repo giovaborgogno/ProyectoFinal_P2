@@ -37,7 +37,6 @@ int PROGRAMA::Convert(string v, bool option)
     catch(out_of_range){return -2;}
     catch(invalid_argument){return -2;}
     break;
-    break;
   }
 }
 

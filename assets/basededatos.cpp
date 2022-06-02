@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <stdio.h>
 #include "basededatos.h"
 using namespace std;
 
@@ -15,13 +16,41 @@ BASEDEDATOS::BASEDEDATOS(int DBSize){
   AdminDB = new ADMINISTRATIVO*[DBSize];
 }
 
+void BASEDEDATOS::saveDB(){
+  FILE *DBFile;
+  DBFile = fopen("database/database.txt","w");
+  for (int x = 0; x < AdminDBIndex; x++)
+  {
+      fprintf(to_string(AdminDB[x]->C->getEstado())
+      ,";",AdminDB[x]->getNombre()
+      ,";",AdminDB[x]->getApellido()
+      ,";",to_string(AdminDB[x]->getDni())
+      ,";",AdminDB[x]->getEmail()
+      ,";",to_string(AdminDB[x]->getSueldo())
+      ,";",to_string(AdminDB[x]->C->getSaldo()),"\n");
+  }
+  for (int x = 0; x < ProfDBIndex; x++)
+  {
+    fprintf(to_string(ProfDB[x]->C->getEstado())
+    ,";",ProfDB[x]->getNombre()
+    ,";",ProfDB[x]->getApellido()
+    ,";",to_string(ProfDB[x]->getDni())
+    ,";",ProfDB[x]->getEmail()
+    ,";",to_string(ProfDB[x]->getSueldo())
+    ,";",to_string(ProfDB[x]->C->getSaldo()),"\n");
+  }
+  fclose(DBFile);
+}
+
 void BASEDEDATOS::AgregarPROFESIONAL(string Nombre, string Apellido, int Dni, string Email, string Titulo, string Actividad, int TiempoServicio, float Sueldo, char TarjetaSN){
   ProfDB[ProfDBIndex] = new PROFESIONAL(Nombre,Apellido,Dni,Email,Titulo,Actividad,TiempoServicio,Sueldo,TarjetaSN);
+  saveDB();
   ProfDBIndex++;
 }
 
 void BASEDEDATOS::AgregarADMINISTRATIVO(string Nombre, string Apellido, int Dni, string Email, string Puesto, float Sueldo){
   AdminDB[AdminDBIndex] = new ADMINISTRATIVO(Nombre,Apellido,Dni,Email,Puesto,Sueldo);
+  saveDB();
   AdminDBIndex++;
 }
 

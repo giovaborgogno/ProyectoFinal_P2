@@ -20,5 +20,6 @@ class BASEDEDATOS{
     void PrintDB(bool);
     bool isClient(int);
     CLIENTE* GetCliente(int);
-    void SortDB();
+    void loadDB();
+    void saveDB();
 };
