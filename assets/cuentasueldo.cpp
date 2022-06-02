@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int AccountCounter=0;
+int AccountCounter=1;
 
 CUENTASUELDO::CUENTASUELDO(float Saldo){
   NumeroDeCuenta=AccountCounter;

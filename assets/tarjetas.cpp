@@ -2,21 +2,25 @@
 #include "tarjetas.h"
 using namespace std;
 
-int CardCounter = 0;
+int CardCounter = 1000;
 
-TARJETA::TARJETA(float Sueldo){
+TARJETA::TARJETA(float Sueldo, bool TarjetaSN){
   this->NumeroDeTarjeta = CardCounter;
-  LimiteDeCompra = Sueldo;
-  if(Sueldo<=40000){
-    Tipo = "Bronce";
-  }else if(Sueldo<=80000){
-    Tipo = "Plata";
-  }else if(Sueldo<=140000){
-    Tipo = "Oro";
+  LimiteDeCompra = Sueldo*1.5;
+  if(TarjetaSN==1){
+    if(Sueldo<=40000){
+      Tipo = "Bronce";
+    }else if(Sueldo<=80000){
+      Tipo = "Plata";
+    }else if(Sueldo<=140000){
+      Tipo = "Oro";
+    }else{
+      Tipo="Platino";
+    }
+    CardCounter++;
   }else{
-    Tipo="Platino";
+    Tipo = "Ninguno";
   }
-  CardCounter++;
 }
 
 int TARJETA::getNumeroDeTarjeta(){

@@ -13,8 +13,8 @@ BASEDEDATOS::BASEDEDATOS(int DBSize){
   AdminDB = new ADMINISTRATIVO*[DBSize];
 }
 
-void BASEDEDATOS::AgregarPROFESIONAL(string Nombre, string Apellido, int Dni, string Email, string Titulo, string Actividad, int TiempoServicio, float Sueldo){
-  ProfDB[ProfDBIndex] = new PROFESIONAL(Nombre,Apellido,Dni,Email,Titulo,Actividad,TiempoServicio,Sueldo);
+void BASEDEDATOS::AgregarPROFESIONAL(string Nombre, string Apellido, int Dni, string Email, string Titulo, string Actividad, int TiempoServicio, float Sueldo, char TarjetaSN){
+  ProfDB[ProfDBIndex] = new PROFESIONAL(Nombre,Apellido,Dni,Email,Titulo,Actividad,TiempoServicio,Sueldo,TarjetaSN);
   ProfDBIndex++;
 }
 
@@ -46,14 +46,14 @@ void BASEDEDATOS::AltaCliente(int NRO){
       }
     }
     if(AdminCount == false){
-        cout << "El cliente ingresado no se encuentra en la lista" << endl;
+        cout << endl << "El cliente ingresado no se encuentra en la lista" << endl;
     }
     else{
-      cout << "Cliente dado de alta exitosamente!" << endl;
+      cout << endl << "Cliente dado de alta exitosamente!" << endl;
     }
   }
   else{
-    cout << "Cliente dado de alta exitosamente!" << endl;
+    cout << endl << "Cliente dado de alta exitosamente!" << endl;
   }
 }
 
@@ -80,19 +80,23 @@ void BASEDEDATOS::BajaCliente(int NRO){
       }
     }
     if(AdminCount == false){
-        cout << "El cliente ingresado no se encuentra en la lista" << endl;
+        cout << endl << "El cliente ingresado no se encuentra en la lista" << endl;
     }
     else{
-      cout << "Cliente dado de baja exitosamente!" << endl;
+      cout << endl << "Cliente dado de baja exitosamente!" << endl;
     }
   }
   else{
-    cout << "Cliente dado de baja exitosamente!" << endl;
+    cout << endl << "Cliente dado de baja exitosamente!" << endl;
   }
 }
 
 void BASEDEDATOS::PrintPROFESIONALES(){
   file.open("output/Profesionales.csv", ios::out);
+  if(file.fail()){
+    cout<<"No se pudo abrir el archivo 'Profesionales.csv'";
+    exit(1);
+  }
   file << "NRO;ESTADO;NOMBRE;APELLIDO;DNI;EMAIL;TITULO;ACTIVIDAD;TIEMPO DE SERVICIO;SUELDO;SALDO;PLAN"<<endl;
       for (int x = 0; x < ProfDBIndex; x++)
   {
@@ -115,6 +119,10 @@ void BASEDEDATOS::PrintPROFESIONALES(){
 
 void BASEDEDATOS::PrintADMINISTRATIVOS(){
   file.open("output/Administrativos.csv", ios::out);
+  if(file.fail()){
+    cout<<"No se pudo abrir el archivo 'Administrativos.csv'";
+    exit(1);
+  }
   file << "NRO;ESTADO;NOMBRE;APELLIDO;DNI;EMAIL;PUESTO;SUELDO;SALDO"<<endl;
       for (int x = 0; x < AdminDBIndex; x++)
   {
@@ -138,6 +146,10 @@ void BASEDEDATOS::PrintClientesDeAlta(bool opt){
     switch(opt){
       case 1:
         file.open("output/ClientesDeAlta.csv", ios::out);
+        if(file.fail()){
+          cout<<"No se pudo abrir el archivo 'ClientesDeAlta.csv'";
+          exit(1);
+        }
         file << "NRO;NOMBRE;APELLIDO;DNI;EMAIL;SUELDO;SALDO"<<endl;
         for (int x = 0; x < AdminDBIndex; x++)
         {
@@ -209,6 +221,10 @@ void BASEDEDATOS::PrintClientesDeBaja(bool opt){
     switch(opt){
       case 1:
         file.open("output/ClientesDeBaja.csv", ios::out);
+        if(file.fail()){
+          cout<<"No se pudo abrir el archivo 'ClientesDeBaja.csv'";
+          exit(1);
+        }
         file << "NRO;NOMBRE;APELLIDO;DNI;EMAIL;SUELDO;SALDO"<<endl;
 
             for (int x = 0; x < AdminDBIndex; x++)
@@ -275,6 +291,10 @@ void BASEDEDATOS::PrintClientesDeBaja(bool opt){
 void BASEDEDATOS::PrintDB(){
 
     file.open("output/BaseDeDatos.csv", ios::out);
+    if(file.fail()){
+      cout<<"No se pudo abrir el archivo 'BaseDeDatos.csv'";
+      exit(1);
+    }
     file << "NRO;ESTADO;NOMBRE;APELLIDO;DNI;EMAIL;SUELDO;SALDO"<<endl;
     for (int x = 0; x < AdminDBIndex; x++)
     {

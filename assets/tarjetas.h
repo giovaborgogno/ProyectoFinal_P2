@@ -7,7 +7,7 @@ class TARJETA{
     float LimiteDeCompra;
     string Tipo;
   public:
-    TARJETA(float);
+    TARJETA(float,bool);
     int getNumeroDeTarjeta();
     float getLimiteDeCompra();
     string getTipo();
