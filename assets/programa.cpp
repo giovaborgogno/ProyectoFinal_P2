@@ -526,12 +526,18 @@ void PROGRAMA::Start(){
               //Validacion de entrada
               if (Verify->NumbersOnly(val)==1){
                 if (Convert(val,1)==1){
-                  option = stoi(val);
-                  break;
-                }else{
-                  cout << endl<< "El numero ingresado es demasiado grande" << endl << endl;
-                  PresioneUnaTeclaParaContinuar();
-                }
+            option = stoi(val);
+            if(option<6){
+            break;
+            }
+            else{
+              cout << endl<< "La opcion ingresada no es valida" << endl << endl;
+            PresioneUnaTeclaParaContinuar();
+            }
+          }else{
+            cout << endl<< "El numero ingresado es demasiado grande" << endl << endl;
+            PresioneUnaTeclaParaContinuar();
+          }
               }else if(Verify->NumbersOnly(val)==0){
                 cout << endl<< "El campo no puede quedar vacio" << endl << endl;
                 PresioneUnaTeclaParaContinuar();
