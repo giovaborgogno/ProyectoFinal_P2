@@ -344,5 +344,8 @@ CLIENTE* BASEDEDATOS::GetCliente(int NRO){
     }
     if(AdminCount == false){
         cout << "El cliente ingresado no se encuentra en el sistema" << endl;
+        return Cl;
     }
+}
+
 }
