@@ -510,7 +510,7 @@ void PROGRAMA::Start(){
             NRO = stoi(val);
             while (true){
               system("CLS || clear");
-              cout << "CLIENTE - " << DB->GetCliente(NRO)->getNombre() << DB->GetCliente(NRO)->getApellido() << endl << endl;
+              cout << "CLIENTE - " << DB->GetCliente(NRO)->getNombre() << " " << DB->GetCliente(NRO)->getApellido() << endl << endl;
               cout << "SALDO: " << DB->GetCliente(NRO)->C->getSaldo() << endl << endl;
               cout << "1) Depositar" << endl;
               cout << "2) Extraer" << endl;
@@ -557,6 +557,8 @@ void PROGRAMA::Start(){
                   }
                 }
                 DB->GetCliente(NRO)->C->Deposito(Monto);
+                cout << endl <<"Deposito realizada exitosamente!"<< endl << endl;
+                PresioneUnaTeclaParaContinuar();
               break;
 
               case 2:
@@ -578,11 +580,15 @@ void PROGRAMA::Start(){
                 }
               }
               DB->GetCliente(NRO)->C->Extraccion(Monto);
+              cout << endl <<"Extraccion realizada exitosamente!"<< endl << endl;
+              PresioneUnaTeclaParaContinuar();
               break;
 
               case 3:
               system("CLS || clear");
               DB->GetCliente(NRO)->C->showHistory();
+              cout << endl;
+              PresioneUnaTeclaParaContinuar();
               break;
 
               default:

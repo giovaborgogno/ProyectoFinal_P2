@@ -333,7 +333,7 @@ CLIENTE* BASEDEDATOS::GetCliente(int NRO){
     }
   }
   if(ProfCount == false){
-    bool AdminCount = 0;
+    bool AdminCount = false;
     for(int i=0;i<AdminDBIndex;i++){
       if(AdminDB[i]->C->getEstado()=='A'){
         if(AdminDB[i]->C->getNumeroDeCuenta()==NRO){
@@ -343,6 +343,7 @@ CLIENTE* BASEDEDATOS::GetCliente(int NRO){
       }
     }
     if(AdminCount == false){
-        cout << "El cliente ingresado no se encuentra en el sistema" << endl;
+        cout << endl <<"El cliente ingresado no se encuentra en el sistema" << endl;
     }
+  }
 }
