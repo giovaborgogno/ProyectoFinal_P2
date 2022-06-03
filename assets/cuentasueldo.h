@@ -6,6 +6,7 @@ class CUENTASUELDO{
     int NumeroDeCuenta;
     float Saldo;
     char Estado;
+    string HistorialDeMovimientos[100][2];
   public:
     CUENTASUELDO(float Saldo=0);
     int getNumeroDeCuenta();
@@ -15,6 +16,7 @@ class CUENTASUELDO{
     void setSaldo(float);
     void setEstado(char);
     void switchEstado();
+    void showHistory();
     void Extraccion(float);
     void Deposito(float);
 };
