@@ -1,13 +1,13 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <stdio.h>
 #include "basededatos.h"
 using namespace std;
 
 int ProfDBIndex = 0;
 int AdminDBIndex = 0;
 ofstream file;
+ifstream LoadDB;
 
 int Campo=15, EmailCampo=30, DniCampo=9;
 
@@ -16,30 +16,29 @@ BASEDEDATOS::BASEDEDATOS(int DBSize){
   AdminDB = new ADMINISTRATIVO*[DBSize];
 }
 
-void BASEDEDATOS::saveDB(){
-  FILE *DBFile;
-  DBFile = fopen("database/database.txt","w");
-  for (int x = 0; x < AdminDBIndex; x++)
-  {
-      fprintf(to_string(AdminDB[x]->C->getEstado())
-      ,";",AdminDB[x]->getNombre()
-      ,";",AdminDB[x]->getApellido()
-      ,";",to_string(AdminDB[x]->getDni())
-      ,";",AdminDB[x]->getEmail()
-      ,";",to_string(AdminDB[x]->getSueldo())
-      ,";",to_string(AdminDB[x]->C->getSaldo()),"\n");
+void BASEDEDATOS::saveAdminDB(){
+
+}
+
+void BASEDEDATOS::saveProfDB(){
+
+}
+
+void BASEDATOS::loadAdminDB(){
+
+}
+
+void BASEDATOS::loadProfDB(){
+
+}
+
+void BASEDEDATOS::loadDB(){
+  LoadDB.open("database/database.csv");
+  if(LoadDB.fail()){
+    cout<<"No se pudo abrir el archivo 'database.csv'";
+    exit(1);
   }
-  for (int x = 0; x < ProfDBIndex; x++)
-  {
-    fprintf(to_string(ProfDB[x]->C->getEstado())
-    ,";",ProfDB[x]->getNombre()
-    ,";",ProfDB[x]->getApellido()
-    ,";",to_string(ProfDB[x]->getDni())
-    ,";",ProfDB[x]->getEmail()
-    ,";",to_string(ProfDB[x]->getSueldo())
-    ,";",to_string(ProfDB[x]->C->getSaldo()),"\n");
-  }
-  fclose(DBFile);
+
 }
 
 void BASEDEDATOS::AgregarPROFESIONAL(string Nombre, string Apellido, int Dni, string Email, string Titulo, string Actividad, int TiempoServicio, float Sueldo, char TarjetaSN){
@@ -164,7 +163,6 @@ void BASEDEDATOS::PrintPROFESIONALES(bool opt){
       << '\t' << "TIPO           " << endl;
 
       for(int i=0; i<ProfDBIndex; i++){
-        if(ProfDB[i]->C->getEstado()=='A'){
           cout << ProfDB[i]->C->getNumeroDeCuenta() << setw(3-to_string(ProfDB[i]->C->getNumeroDeCuenta()).length())
           << '\t' << ProfDB[i]->C->getEstado() << setw(Campo-to_string(ProfDB[i]->C->getEstado()).length())
           << '\t' << ProfDB[i]->getNombre() << setw(Campo-ProfDB[i]->getNombre().length())
@@ -178,7 +176,6 @@ void BASEDEDATOS::PrintPROFESIONALES(bool opt){
           << '\t' << ProfDB[i]->C->getSaldo() << setw(Campo-to_string(ProfDB[i]->C->getSaldo()).length())
           << '\t' << ProfDB[i]->T->getTipo() << setw(Campo-(ProfDB[i]->T->getTipo()).length()) << '\n';
           cout.flush();
-        }
       }
       break;
     }
@@ -219,7 +216,6 @@ void BASEDEDATOS::PrintPROFESIONALES(bool opt){
       << '\t' << "SALDO          " << endl;
 
       for(int i=0; i<AdminDBIndex; i++){
-        if(AdminDB[i]->C->getEstado()=='A'){
           cout << AdminDB[i]->C->getNumeroDeCuenta() << setw(3-to_string(AdminDB[i]->C->getNumeroDeCuenta()).length())
           << '\t' << AdminDB[i]->C->getEstado() << setw(Campo-to_string(AdminDB[i]->C->getEstado()).length())
           << '\t' << AdminDB[i]->getNombre() << setw(Campo-AdminDB[i]->getNombre().length())
@@ -230,7 +226,6 @@ void BASEDEDATOS::PrintPROFESIONALES(bool opt){
           << '\t' << AdminDB[i]->getSueldo() << setw((Campo+7)-to_string(AdminDB[i]->getSueldo()).length())
           << '\t' << AdminDB[i]->C->getSaldo() << setw(Campo-to_string(AdminDB[i]->C->getSaldo()).length()) << '\n';
           cout.flush();
-        }
       }
         break;
     }
@@ -425,7 +420,6 @@ void BASEDEDATOS::PrintDB(bool opt){
       << '\t' << "SUELDO         "
       << '\t' << "SALDO          " << endl;
       for(int i=0; i<AdminDBIndex; i++){
-        if(AdminDB[i]->C->getEstado()=='A'){
           cout << AdminDB[i]->C->getNumeroDeCuenta() << setw(3-to_string(AdminDB[i]->C->getNumeroDeCuenta()).length())
           << '\t' << AdminDB[i]->getNombre() << setw(Campo-AdminDB[i]->getNombre().length())
           << '\t' << AdminDB[i]->getApellido() << setw(Campo-AdminDB[i]->getApellido().length())
@@ -434,10 +428,8 @@ void BASEDEDATOS::PrintDB(bool opt){
           << '\t' << AdminDB[i]->getSueldo() << setw((Campo+7)-to_string(AdminDB[i]->getSueldo()).length())
           << '\t' << AdminDB[i]->C->getSaldo() << setw(Campo-to_string(AdminDB[i]->C->getSaldo()).length()) << '\n';
           cout.flush();
-        }
       }
       for(int i=0; i<ProfDBIndex; i++){
-        if(ProfDB[i]->C->getEstado()=='A'){
           cout << ProfDB[i]->C->getNumeroDeCuenta() << setw(3-to_string(ProfDB[i]->C->getNumeroDeCuenta()).length())
           << '\t' << ProfDB[i]->getNombre() << setw(Campo-ProfDB[i]->getNombre().length())
           << '\t' << ProfDB[i]->getApellido() << setw(Campo-ProfDB[i]->getApellido().length())
@@ -446,7 +438,6 @@ void BASEDEDATOS::PrintDB(bool opt){
           << '\t' << ProfDB[i]->getSueldo() << setw((Campo+7)-to_string(ProfDB[i]->getSueldo()).length())
           << '\t' << ProfDB[i]->C->getSaldo() << setw(Campo-to_string(ProfDB[i]->C->getSaldo()).length()) << '\n';
           cout.flush();
-        }
       }
       break;
     }
@@ -470,7 +461,7 @@ bool BASEDEDATOS::isClient(int NRO){
   return false;
 }
 
-CLIENTE* BASEDEDATOS::GetCliente(int NRO){
+CLIENTE* BASEDEDATOS::GetClient(int NRO){
   CLIENTE *Cl;
   bool ProfCount = false;
   for(int i=0;i<ProfDBIndex;i++){

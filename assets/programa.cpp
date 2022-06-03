@@ -520,8 +520,8 @@ void PROGRAMA::Start(){
               if(DB->isClient(NRO)==true){
                 while (true){
                   system("CLS || clear");
-                  cout << "CLIENTE - " << DB->GetCliente(NRO)->getNombre() << " " << DB->GetCliente(NRO)->getApellido() << endl << endl;
-                  cout << "SALDO: " << DB->GetCliente(NRO)->C->getSaldo() << endl << endl;
+                  cout << "CLIENTE - " << DB->GetClient(NRO)->getNombre() << " " << DB->GetClient(NRO)->getApellido() << endl << endl;
+                  cout << "SALDO: " << DB->GetClient(NRO)->C->getSaldo() << endl << endl;
                   cout << "1) Depositar" << endl;
                   cout << "2) Extraer" << endl;
                   cout << "3) Ver historial de movimientos" << endl;
@@ -570,7 +570,7 @@ void PROGRAMA::Start(){
                         cout << endl<< "El ingreso debe ser numerico y/o contener UN punto" << endl << endl;
                       }
                     }
-                    DB->GetCliente(NRO)->C->Deposito(Monto);
+                    DB->GetClient(NRO)->C->Deposito(Monto);
                     cout << endl <<"Deposito realizada exitosamente!"<< endl << endl;
                     PresioneUnaTeclaParaContinuar();
                   break;
@@ -592,14 +592,14 @@ void PROGRAMA::Start(){
                       cout << endl<< "El ingreso debe ser numerico y/o contener UN punto" << endl << endl;
                     }
                   }
-                  DB->GetCliente(NRO)->C->Extraccion(Monto);
+                  DB->GetClient(NRO)->C->Extraccion(Monto);
 
                   PresioneUnaTeclaParaContinuar();
                   break;
 
                   case 3:
                   system("CLS || clear");
-                  DB->GetCliente(NRO)->C->showHistory();
+                  DB->GetClient(NRO)->C->showHistory();
                   cout << endl;
                   PresioneUnaTeclaParaContinuar();
                   break;

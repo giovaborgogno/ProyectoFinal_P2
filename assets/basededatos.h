@@ -19,7 +19,9 @@ class BASEDEDATOS{
     void PrintClientesDeBaja(bool);
     void PrintDB(bool);
     bool isClient(int);
-    CLIENTE* GetCliente(int);
-    void loadDB();
-    void saveDB();
+    CLIENTE* GetClient(int);
+    void saveAdminDB();
+    void saveProfDB();
+    void loadAdminDB();
+    void loadProfDB();
 };
