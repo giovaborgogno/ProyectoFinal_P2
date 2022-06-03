@@ -24,7 +24,7 @@ void BASEDEDATOS::saveAdminDB(){
     exit(1);
   }
   for (int I = 0; I < AdminDBIndex; I++)
-  {  
+  {
   file <<AdminDB[I]->C->getNumeroDeCuenta()
   << ";" << AdminDB[I]->C->getEstado()
   << ";" << AdminDB[I]->getNombre()
@@ -69,7 +69,6 @@ ifstream archivo(AdminDB_Archivo);
     // Leemos todas las líneas
     while (getline(archivo, linea))
     {
-
         string NRO, Estado, Nombre, Apellido, DNI, Email, Sueldo, Saldo, Puesto;
         stringstream stream(linea); // Convertir la cadena a un stream
         // Extraer todos los valores de esa fila
@@ -136,14 +135,14 @@ ifstream archivo(ProfDB_Archivo);
 
 void BASEDEDATOS::AgregarPROFESIONAL(string Nombre, string Apellido, int Dni, string Email, string Titulo, string Actividad, int TiempoServicio, float Sueldo, char TarjetaSN){
   ProfDB[ProfDBIndex] = new PROFESIONAL(Nombre,Apellido,Dni,Email,Titulo,Actividad,TiempoServicio,Sueldo,TarjetaSN);
-  saveProfDB();
   ProfDBIndex++;
+  saveProfDB();
 }
 
 void BASEDEDATOS::AgregarADMINISTRATIVO(string Nombre, string Apellido, int Dni, string Email, string Puesto, float Sueldo){
   AdminDB[AdminDBIndex] = new ADMINISTRATIVO(Nombre,Apellido,Dni,Email,Puesto,Sueldo);
-  saveAdminDB();
   AdminDBIndex++;
+  saveAdminDB();
 }
 
 void BASEDEDATOS::AltaCliente(int NRO){
