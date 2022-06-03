@@ -64,6 +64,7 @@ void CUENTASUELDO::Deposito(float Monto){
   HistorialDeMovimientos[HistoryIndex][0] = "D";
   HistorialDeMovimientos[HistoryIndex][1] = to_string(Monto);
   HistoryIndex++;
+  cout << endl <<"Deposito realizada exitosamente!"<< endl << endl;
 }
 
 void CUENTASUELDO::Acreditacion(float Monto){

@@ -18,6 +18,7 @@ using namespace std;
         break;
       case 'N':
         T = new TARJETA(this->Sueldo,0);
+        T->setNumeroDeTarjeta(0);
         break;
     }
     C->Acreditacion(Sueldo);

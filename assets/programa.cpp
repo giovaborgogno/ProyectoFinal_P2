@@ -37,7 +37,6 @@ int PROGRAMA::Convert(string v, bool option)
     catch(out_of_range){return -2;}
     catch(invalid_argument){return -2;}
     break;
-    break;
   }
 }
 
@@ -50,6 +49,9 @@ void PROGRAMA::Start(){
   int DNI, TiempoServicio, NRO;
   char TarjetaSN;
   float Sueldo, Monto;
+  //Base de Datos Load
+  DB->loadAdminDB();
+  DB->loadProfDB();
   //Inicio del programa
   while (true){
     while (true){//Ciclo de repeticion del menu
@@ -202,7 +204,7 @@ void PROGRAMA::Start(){
             }
             //Ingreso Tiempo de Servicio
             while (true){
-              cout << "Tiempo de servicio: "; cin.sync(); getline(cin, val);
+              cout << "Anios de servicio: "; cin.sync(); getline(cin, val);
               //Validacion de entrada
               if (Verify->NumbersOnly(val)==1){
                 if (Convert(val,1)==1){
@@ -521,8 +523,8 @@ void PROGRAMA::Start(){
               if(DB->isClient(NRO)==true){
                 while (true){
                   system("CLS || clear");
-                  cout << "CLIENTE - " << DB->GetCliente(NRO)->getNombre() << " " << DB->GetCliente(NRO)->getApellido() << endl << endl;
-                  cout << "SALDO: " << DB->GetCliente(NRO)->C->getSaldo() << endl << endl;
+                  cout << "CLIENTE - " << DB->GetClient(NRO)->getNombre() << " " << DB->GetClient(NRO)->getApellido() << endl << endl;
+                  cout << "SALDO: " << DB->GetClient(NRO)->C->getSaldo() << endl << endl;
                   cout << "1) Depositar" << endl;
                   cout << "2) Extraer" << endl;
                   cout << "3) Ver historial de movimientos" << endl;
@@ -571,8 +573,9 @@ void PROGRAMA::Start(){
                         cout << endl<< "El ingreso debe ser numerico y/o contener UN punto" << endl << endl;
                       }
                     }
-                    DB->GetCliente(NRO)->C->Deposito(Monto);
-                    cout << endl <<"Deposito realizada exitosamente!"<< endl << endl;
+                    DB->GetClient(NRO)->C->Deposito(Monto);
+                    DB->saveProfDB();
+                    DB->saveAdminDB();
                     PresioneUnaTeclaParaContinuar();
                   break;
 
@@ -593,14 +596,15 @@ void PROGRAMA::Start(){
                       cout << endl<< "El ingreso debe ser numerico y/o contener UN punto" << endl << endl;
                     }
                   }
-                  DB->GetCliente(NRO)->C->Extraccion(Monto);
-
+                  DB->GetClient(NRO)->C->Extraccion(Monto);
+                  DB->saveProfDB();
+                  DB->saveAdminDB();
                   PresioneUnaTeclaParaContinuar();
                   break;
 
                   case 3:
                   system("CLS || clear");
-                  DB->GetCliente(NRO)->C->showHistory();
+                  DB->GetClient(NRO)->C->showHistory();
                   cout << endl;
                   PresioneUnaTeclaParaContinuar();
                   break;
@@ -623,6 +627,8 @@ void PROGRAMA::Start(){
       break;
 
       case 6://Salir
+      DB->saveProfDB();
+      DB->saveAdminDB();
       exit(0);
 
       default:
