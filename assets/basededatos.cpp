@@ -2,12 +2,13 @@
 #include <fstream>
 #include <iomanip>
 #include "basededatos.h"
+#define ProfDB_Archivo "database/ProfDB.csv"
+#define AdminDB_Archivo "database/AdminDB.csv"
 using namespace std;
 
 int ProfDBIndex = 0;
 int AdminDBIndex = 0;
-ofstream file;
-ifstream LoadDB;
+fstream file;
 
 int Campo=15, EmailCampo=30, DniCampo=9;
 
@@ -17,39 +18,131 @@ BASEDEDATOS::BASEDEDATOS(int DBSize){
 }
 
 void BASEDEDATOS::saveAdminDB(){
-
+  file.open("database/AdminDB.csv", ios::out);
+  if(file.fail()){
+    cout<<"No se pudo abrir el archivo 'AdminDB.csv'";
+    exit(1);
+  }
+  for (int I = 0; I < AdminDBIndex; I++)
+  {  
+  file <<AdminDB[I]->C->getNumeroDeCuenta()
+  << ";" << AdminDB[I]->C->getEstado()
+  << ";" << AdminDB[I]->getNombre()
+  << ";" << AdminDB[I]->getApellido()
+  << ";" << AdminDB[I]->getDni()
+  << ";" << AdminDB[I]->getEmail()
+  << ";" << AdminDB[I]->getPuesto()
+  << ";" << AdminDB[I]->getSueldo()
+  << ";" << AdminDB[I]->C->getSaldo()<< endl;
+  }
+  file.close();
 }
 
 void BASEDEDATOS::saveProfDB(){
-
-}
-
-void BASEDATOS::loadAdminDB(){
-
-}
-
-void BASEDATOS::loadProfDB(){
-
-}
-
-void BASEDEDATOS::loadDB(){
-  LoadDB.open("database/database.csv");
-  if(LoadDB.fail()){
-    cout<<"No se pudo abrir el archivo 'database.csv'";
+  file.open("database/ProfDB.csv", ios::out);
+  if(file.fail()){
+    cout<<"No se pudo abrir el archivo 'ProfDB.csv'";
     exit(1);
   }
+  for (int I = 0; I < ProfDBIndex; I++)
+  {
+  file <<ProfDB[I]->C->getNumeroDeCuenta()
+  << ";" << ProfDB[I]->C->getEstado()
+  << ";" << ProfDB[I]->getNombre()
+  << ";" << ProfDB[I]->getApellido()
+  << ";" << ProfDB[I]->getDni()
+  << ";" << ProfDB[I]->getEmail()
+  << ";" << ProfDB[I]->getTitulo()
+  << ";" << ProfDB[I]->getActividad()
+  << ";" << ProfDB[I]->getTiempoServicio()
+  << ";" << ProfDB[I]->getSueldo()
+  << ";" << ProfDB[I]->C->getSaldo()
+  << ";" << ProfDB[I]->T->getTipo()<<endl;
+  }
+  file.close();
+}
 
+void BASEDEDATOS::loadAdminDB(){
+ifstream archivo(AdminDB_Archivo);
+    string linea;
+    char delimitador = ';';
+    // Leemos todas las líneas
+    while (getline(archivo, linea))
+    {
+
+        string NRO, Estado, Nombre, Apellido, DNI, Email, Sueldo, Saldo, Puesto;
+        stringstream stream(linea); // Convertir la cadena a un stream
+        // Extraer todos los valores de esa fila
+        getline(stream, NRO, delimitador);
+        getline(stream, Estado, delimitador);
+        getline(stream, Nombre, delimitador);
+        getline(stream, Apellido, delimitador);
+        getline(stream, DNI, delimitador);
+        getline(stream, Email, delimitador);
+        getline(stream, Puesto, delimitador);
+        getline(stream, Sueldo, delimitador);
+        getline(stream, Saldo, delimitador);
+        // Cargar datos
+          AdminDB[AdminDBIndex] = new ADMINISTRATIVO(Nombre,Apellido,stoi(DNI),Email,Puesto,stof(Sueldo));
+          AdminDB[AdminDBIndex]->C->setNumeroDeCuenta(stoi(NRO));
+          AdminDB[AdminDBIndex]->C->setSaldo(stof(Saldo));
+          AdminDB[AdminDBIndex]->C->setEstado(Estado[0]);
+
+          AdminDBIndex++;
+    }
+
+    archivo.close();
+}
+
+void BASEDEDATOS::loadProfDB(){
+ifstream archivo(ProfDB_Archivo);
+    string linea;
+    char delimitador = ';';
+    // Leemos todas las líneas
+    while (getline(archivo, linea))
+    {
+
+        string NRO, Estado, Nombre, Apellido, DNI, Email, Titulo, Actividad, TiempoDeServicio, Sueldo, Saldo, Tipo;
+        stringstream stream(linea); // Convertir la cadena a un stream
+        // Extraer todos los valores de esa fila
+        getline(stream, NRO, delimitador);
+        getline(stream, Estado, delimitador);
+        getline(stream, Nombre, delimitador);
+        getline(stream, Apellido, delimitador);
+        getline(stream, DNI, delimitador);
+        getline(stream, Email, delimitador);
+        getline(stream, Titulo, delimitador);
+        getline(stream, Actividad, delimitador);
+        getline(stream, TiempoDeServicio, delimitador);
+        getline(stream, Sueldo, delimitador);
+        getline(stream, Saldo, delimitador);
+        getline(stream, Tipo, delimitador);
+        // Cargar datos
+        if(Tipo=="Ninguno"){
+          Tipo="N";
+        }
+        else{
+          Tipo="S";
+        }
+          ProfDB[ProfDBIndex] = new PROFESIONAL(Nombre,Apellido,stoi(DNI),Email,Titulo,Actividad,stoi(TiempoDeServicio),stof(Sueldo),Tipo[0]);
+          ProfDB[ProfDBIndex]->C->setNumeroDeCuenta(stoi(NRO));
+          ProfDB[ProfDBIndex]->C->setSaldo(stof(Saldo));
+          ProfDB[ProfDBIndex]->C->setEstado(Estado[0]);
+          ProfDBIndex++;
+    }
+
+    archivo.close();
 }
 
 void BASEDEDATOS::AgregarPROFESIONAL(string Nombre, string Apellido, int Dni, string Email, string Titulo, string Actividad, int TiempoServicio, float Sueldo, char TarjetaSN){
   ProfDB[ProfDBIndex] = new PROFESIONAL(Nombre,Apellido,Dni,Email,Titulo,Actividad,TiempoServicio,Sueldo,TarjetaSN);
-  saveDB();
+  saveProfDB();
   ProfDBIndex++;
 }
 
 void BASEDEDATOS::AgregarADMINISTRATIVO(string Nombre, string Apellido, int Dni, string Email, string Puesto, float Sueldo){
   AdminDB[AdminDBIndex] = new ADMINISTRATIVO(Nombre,Apellido,Dni,Email,Puesto,Sueldo);
-  saveDB();
+  saveAdminDB();
   AdminDBIndex++;
 }
 
@@ -80,10 +173,12 @@ void BASEDEDATOS::AltaCliente(int NRO){
     }
     else{
       cout << endl << "Cliente dado de alta exitosamente!" << endl;
+      saveAdminDB();
     }
   }
   else{
     cout << endl << "Cliente dado de alta exitosamente!" << endl;
+    saveProfDB();
   }
 }
 
@@ -114,10 +209,12 @@ void BASEDEDATOS::BajaCliente(int NRO){
     }
     else{
       cout << endl << "Cliente dado de baja exitosamente!" << endl;
+      saveAdminDB();
     }
   }
   else{
     cout << endl << "Cliente dado de baja exitosamente!" << endl;
+    saveProfDB();
   }
 }
 

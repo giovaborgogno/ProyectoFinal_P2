@@ -49,6 +49,9 @@ void PROGRAMA::Start(){
   int DNI, TiempoServicio, NRO;
   char TarjetaSN;
   float Sueldo, Monto;
+  //Base de Datos Load
+  DB->loadAdminDB();
+  DB->loadProfDB();
   //Inicio del programa
   while (true){
     while (true){//Ciclo de repeticion del menu
@@ -201,7 +204,7 @@ void PROGRAMA::Start(){
             }
             //Ingreso Tiempo de Servicio
             while (true){
-              cout << "Tiempo de servicio: "; cin.sync(); getline(cin, val);
+              cout << "Anios de servicio: "; cin.sync(); getline(cin, val);
               //Validacion de entrada
               if (Verify->NumbersOnly(val)==1){
                 if (Convert(val,1)==1){
@@ -571,7 +574,8 @@ void PROGRAMA::Start(){
                       }
                     }
                     DB->GetClient(NRO)->C->Deposito(Monto);
-                    cout << endl <<"Deposito realizada exitosamente!"<< endl << endl;
+                    DB->saveProfDB();
+                    DB->saveAdminDB();
                     PresioneUnaTeclaParaContinuar();
                   break;
 
@@ -593,7 +597,8 @@ void PROGRAMA::Start(){
                     }
                   }
                   DB->GetClient(NRO)->C->Extraccion(Monto);
-
+                  DB->saveProfDB();
+                  DB->saveAdminDB();
                   PresioneUnaTeclaParaContinuar();
                   break;
 
@@ -622,6 +627,8 @@ void PROGRAMA::Start(){
       break;
 
       case 6://Salir
+      DB->saveProfDB();
+      DB->saveAdminDB();
       exit(0);
 
       default:
