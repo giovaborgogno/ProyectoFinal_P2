@@ -124,9 +124,12 @@ void PROGRAMA::Start(){
             while (true){
               cout << "Nombre: ";cin.sync(); getline(cin, val);
               //Validacion de entrada
-              if (Verify->AlphaOnly(val)==1){
+              if (Verify->AlphaOnly(val)==1 && Verify->Espacios(val)==1){
                 Nombre = val;
                 break;
+              }
+              else if(Verify->Espacios(val)==0){
+                cout<< endl<< "Nombre invalido"<<endl<<endl;
               }else if(Verify->AlphaOnly(val)==0){
                 cout << endl<< "El campo no puede quedar vacio" << endl << endl;
               }else if(Verify->AlphaOnly(val)==-1){
@@ -137,9 +140,12 @@ void PROGRAMA::Start(){
             while (true){
               cout << "Apellido: "; cin.sync(); getline(cin, val);
               //Validacion de entrada
-              if (Verify->AlphaOnly(val)==1){
+              if (Verify->AlphaOnly(val)==1 && Verify->Espacios(val)==1){
                 Apellido = val;
                 break;
+              }
+              else if(Verify->Espacios(val)==0){
+                cout<< endl<< "Apellido invalido"<<endl<<endl;
               }else if(Verify->AlphaOnly(val)==0){
                 cout << endl<< "El campo no puede quedar vacio" << endl << endl;
               }else if(Verify->AlphaOnly(val)==-1){
@@ -180,22 +186,28 @@ void PROGRAMA::Start(){
             while (true){
               cout << "Titulo: "; cin.sync(); getline(cin, val);
               //Validacion de entrada
-              if (Verify->AlphaOnly(val)==1){
+              if (Verify->AlphaOnly(val)==1 && Verify->Espacios(val)==1){
                 Titulo = val;
                 break;
+              }
+              else if(Verify->Espacios(val)==0){
+                cout<< endl<< "Titulo invalido"<<endl<<endl;
               }else if(Verify->AlphaOnly(val)==0){
                 cout << endl<< "El campo no puede quedar vacio" << endl << endl;
               }else if(Verify->AlphaOnly(val)==-1){
-                cout << endl<< "El ingreso debe ser numerico" << endl << endl;
+                cout << endl<< "Ingrese caracteres validos" << endl << endl;
               }
             }
             //Ingreso Actividad
             while (true){
               cout << "Actividad: "; cin.sync(); getline(cin, val);
               //Validacion de entrada
-              if (Verify->AlphaOnly(val)==1){
+              if (Verify->AlphaOnly(val)==1 && Verify->Espacios(val)==1){
                 Actividad = val;
                 break;
+              }
+              else if(Verify->Espacios(val)==0){
+                cout<< endl<< "Actividad invalida"<<endl<<endl;
               }else if(Verify->AlphaOnly(val)==0){
                 cout << endl<< "El campo no puede quedar vacio" << endl << endl;
               }else if(Verify->AlphaOnly(val)==-1){
@@ -268,9 +280,12 @@ void PROGRAMA::Start(){
             while (true){
               cout << "Nombre: "; cin.sync(); getline(cin, val);
               //Validacion de entrada
-              if (Verify->AlphaOnly(val)==1){
+              if (Verify->AlphaOnly(val)==1 && Verify->Espacios(val)==1){
                 Nombre = val;
                 break;
+              }
+              else if(Verify->Espacios(val)==0){
+                cout<< endl<< "Nombre invalido"<<endl<<endl;
               }else if(Verify->AlphaOnly(val)==0){
                 cout << endl<< "El campo no puede quedar vacio" << endl << endl;
               }else if(Verify->AlphaOnly(val)==-1){
@@ -281,9 +296,12 @@ void PROGRAMA::Start(){
             while (true){
               cout << "Apellido: "; cin.sync(); getline(cin, val);
               //Validacion de entrada
-              if (Verify->AlphaOnly(val)==1){
+              if (Verify->AlphaOnly(val)==1 && Verify->Espacios(val)==1){
                 Apellido = val;
                 break;
+              }
+              else if(Verify->Espacios(val)==0){
+                cout<< endl<< "Apellido invalido"<<endl<<endl;
               }else if(Verify->AlphaOnly(val)==0){
                 cout << endl<< "El campo no puede quedar vacio" << endl << endl;
               }else if(Verify->AlphaOnly(val)==-1){
@@ -324,9 +342,12 @@ void PROGRAMA::Start(){
             while (true){
               cout << "Puesto: "; cin.sync(); getline(cin, val);
               //Validacion de entrada
-              if (Verify->AlphaOnly(val)==1){
+              if (Verify->AlphaOnly(val)==1 && Verify->Espacios(val)==1){
                 Puesto = val;
                 break;
+              }
+              else if(Verify->Espacios(val)==0){
+                cout<< endl<< "Puesto invalido"<<endl<<endl;
               }else if(Verify->AlphaOnly(val)==0){
                 cout << endl<< "El campo no puede quedar vacio" << endl << endl;
               }else if(Verify->AlphaOnly(val)==-1){

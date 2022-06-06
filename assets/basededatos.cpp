@@ -63,7 +63,8 @@ void BASEDEDATOS::saveProfDB(){
 }
 
 void BASEDEDATOS::loadAdminDB(){
-ifstream archivo(AdminDB_Archivo);
+try{
+    ifstream archivo(AdminDB_Archivo);
     string linea;
     char delimitador = ';';
     // Leemos todas las líneas
@@ -91,10 +92,15 @@ ifstream archivo(AdminDB_Archivo);
     }
 
     archivo.close();
+  }
+  catch(invalid_argument){
+    cout<<"Error al cargar la Base de Datos! Por favor verifique la integridad del archivo 'AdminDB'";
+    exit(1);
+  }
 }
-
 void BASEDEDATOS::loadProfDB(){
-ifstream archivo(ProfDB_Archivo);
+ try{
+    ifstream archivo(ProfDB_Archivo);
     string linea;
     char delimitador = ';';
     // Leemos todas las líneas
@@ -131,6 +137,11 @@ ifstream archivo(ProfDB_Archivo);
     }
 
     archivo.close();
+}
+catch(invalid_argument){
+  cout<<"Error al cargar la Base de Datos! Por favor verifique la integridad del archivo 'ProfDB'";
+  exit(1);
+}
 }
 
 void BASEDEDATOS::AgregarPROFESIONAL(string Nombre, string Apellido, int Dni, string Email, string Titulo, string Actividad, int TiempoServicio, float Sueldo, char TarjetaSN){

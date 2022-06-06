@@ -10,4 +10,5 @@ class VALIDACION{
     int isDNI(string);
     int isEmail(string);
     int isName(string);
+    bool Espacios(string);
 };

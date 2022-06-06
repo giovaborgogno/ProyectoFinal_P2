@@ -106,3 +106,12 @@ int VALIDACION::isEmail(string v){
 int VALIDACION::isName(string v){
   return AlphaOnly(v);
 }
+
+bool VALIDACION::Espacios(string v){
+  if(int(v[0])==32){
+    return 0; // El campo empieza con espacio
+  }
+  else{
+    return 1; //OK
+  }
+}
