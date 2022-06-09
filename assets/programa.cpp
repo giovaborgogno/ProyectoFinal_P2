@@ -9,10 +9,11 @@ PROGRAMA::PROGRAMA(){
 }
 
 void PROGRAMA::PresioneUnaTeclaParaContinuar(){
+  string *s;
+  s = new string;
   cout << "<Presione ENTER para continuar>";
-  cin.sync();
-  cin.ignore();
-  system("CLS || clear");
+  getline(cin, s);
+  delete s;
 }
 
 int PROGRAMA::Convert(string v, bool option)

@@ -280,7 +280,7 @@ void BASEDEDATOS::PrintPROFESIONALES(bool opt){
           << '\t' << ProfDB[i]->getActividad() << setw(Campo-ProfDB[i]->getActividad().length())
           << '\t' << ProfDB[i]->getTiempoServicio() << setw(Campo-to_string(ProfDB[i]->getTiempoServicio()).length())
           << '\t' << ProfDB[i]->getSueldo() << setw((Campo+7)-to_string(ProfDB[i]->getSueldo()).length())
-          << '\t' << ProfDB[i]->C->getSaldo() << setw(Campo-to_string(ProfDB[i]->C->getSaldo()).length())
+          << '\t' << ProfDB[i]->C->getSaldo() << setw((Campo+7)-to_string(ProfDB[i]->C->getSaldo()).length())
           << '\t' << ProfDB[i]->T->getTipo() << setw(Campo-(ProfDB[i]->T->getTipo()).length()) << '\n';
           cout.flush();
       }
