@@ -12,7 +12,7 @@ void PROGRAMA::PresioneUnaTeclaParaContinuar(){
   string *s;
   s = new string;
   cout << "<Presione ENTER para continuar>";
-  getline(cin, s);
+  getline(cin, *s);
   delete s;
 }
 
